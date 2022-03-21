@@ -12,8 +12,8 @@ public class Teste {
 		System.out.println(string);
 
 		// teste cifra vigenere
-		String plaintext = "ATACAREMOS AO AMANHECER";
-		String keyword = "BICICLETA";
+		String plaintext = "Atacar base sul";
+		String keyword = "Limao";
 		System.out.println("-------------------------------");
 		System.out.println("Mensagem aberta: " + plaintext);
 		System.out.println("Palavra-chave: " + keyword);

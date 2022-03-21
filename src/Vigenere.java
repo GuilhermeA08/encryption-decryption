@@ -5,6 +5,7 @@ public class Vigenere {
 		StringBuilder builderMessage = new StringBuilder();
 		StringBuilder key = new StringBuilder();
 		
+		message = message.replaceAll(" ", "");
 		message = message.toUpperCase();
 		keyword = keyword.toUpperCase();
 		
@@ -29,6 +30,7 @@ public class Vigenere {
 		StringBuilder builderMessage = new StringBuilder();
 		StringBuilder key = new StringBuilder();
 		
+		message = message.replaceAll(" ", "");
 		message = message.toUpperCase();
 		keyword = keyword.toUpperCase();
 		
