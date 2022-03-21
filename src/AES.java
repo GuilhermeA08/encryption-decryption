@@ -12,14 +12,16 @@ public class AES {
 	static SecretKey secretKey;
 	static IvParameterSpec parameterSpec;
 	
-	public static String encryption(String plaintext) throws NoSuchAlgorithmException, NoSuchPaddingException,
-	InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-		
+	public static void gerarChave() throws NoSuchAlgorithmException {
 		keyGenerator = KeyGenerator.getInstance("AES");
 		keyGenerator.init(256);
 		secretKey = keyGenerator.generateKey();
-		String secretKeyString = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-		System.out.println("Chave gerada = " + secretKeyString);
+		String secretString = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+		System.out.println("Chave gerada = " + secretString);
+	}
+	
+	public static String encryption(String plaintext) throws NoSuchAlgorithmException, NoSuchPaddingException,
+	InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		
 		Cipher encryptionCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		parameterSpec = new IvParameterSpec(new byte[16]);
@@ -33,15 +35,10 @@ public class AES {
 	public static String decryption(String cryptedtext) throws NoSuchAlgorithmException, NoSuchPaddingException,
 	InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		
-		keyGenerator = KeyGenerator.getInstance("AES");
-		keyGenerator.init(256);
-		secretKey = keyGenerator.generateKey();
-		String secretKeyString = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-		System.out.println("Chave gerada = " + secretKeyString);
-		
+		byte [] encryptedMessageBytes = Base64.getDecoder().decode(cryptedtext);
 		Cipher decryptionCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		decryptionCipher.init(Cipher.DECRYPT_MODE, secretKey, parameterSpec);
-		byte[] decryptedMessageBytes = decryptionCipher.doFinal();
+		byte[] decryptedMessageBytes = decryptionCipher.doFinal(encryptedMessageBytes);
 		String decryptedMessage = new String(decryptedMessageBytes);
 		
 		return decryptedMessage;
