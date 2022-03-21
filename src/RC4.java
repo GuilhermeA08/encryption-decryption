@@ -5,6 +5,14 @@ import javax.crypto.*;
 
 public class RC4 {
 
+  public static SecretKey generateKey() throws NoSuchAlgorithmException {
+    KeyGenerator keyGenerator = KeyGenerator.getInstance("RC4");
+    keyGenerator.init(128);
+    SecretKey secretKey = keyGenerator.generateKey();
+
+    return secretKey;
+  }
+
   public static String encrypted(String message, SecretKey key)
     throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
     Cipher cifrador = Cipher.getInstance("RC4");

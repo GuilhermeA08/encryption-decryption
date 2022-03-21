@@ -16,20 +16,6 @@ public class Teste {
     String string = "OLA MUNDO";
     int key = 1;
 
-    KeyGenerator keyGenerator = KeyGenerator.getInstance("RC4");
-    keyGenerator.init(128);
-    SecretKey secretKey = keyGenerator.generateKey();
-    String secretKeyString = Base64
-      .getEncoder()
-      .encodeToString(secretKey.getEncoded());
-    System.out.println("generated key = " + secretKeyString);
-
-    System.out.println("RC4");
-    System.out.println(RC4jc.encrypted(string, secretKey));
-    String rc4 = RC4jc.encrypted(string, secretKey);
-    System.out.println(RC4jc.decrypted(rc4, secretKey));
-    System.out.println("");
-
     // teste cifra vigenere
     String plaintext = "Atacar base sul";
     String keyword = "Limao";
